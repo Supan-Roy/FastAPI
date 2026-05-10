@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, Path
 from service.products import get_all_products
 
 app = FastAPI()
@@ -33,9 +33,9 @@ def list_products(
         description="Number of items to return",
     ),
     offset: int = Query(
-    default=0,
-    ge=0,
-    description="Pagination Offset",
+        default=0,
+        ge=0,
+        description="Pagination Offset",
     ),
 ):
     products = get_all_products()
@@ -48,11 +48,25 @@ def list_products(
         raise HTTPException(
             status_code=404, detail=f"No product found matching name={name}"
         )
-    
+
     if sort_by_price:
         reverse = order == "desc"
-        products = sorted(products, key=lambda p:p.get("price", 0), reverse=reverse)
+        products = sorted(products, key=lambda p: p.get("price", 0), reverse=reverse)
 
     total = len(products)
-    products = products[offset: offset + limit]
-    return {"total": total, "limit": limit ,"items": products}
+    products = products[offset : offset + limit]
+    return {"total": total, "limit": limit, "items": products}
+
+
+@app.get("/products/{product_id}")
+def get_product_by_id(
+    product_id: str = Path(
+        ..., min_length=36, max_length=36, description="UUID of the product"
+    )
+):
+    products = get_all_products()
+    for product in products:
+
+        if product["id"] == product_id:
+            return product
+    raise HTTPException(status_code=404, detail="Product not found!")
