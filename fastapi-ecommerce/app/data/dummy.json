@@ -1,0 +1,73 @@
+[
+  {
+    "id": "0005a4ea-ce3f-4dd7-bee0-f4ccc70fea6a",
+    "sku": "XIAO-359GB-001",
+    "name": "Xiaomi Model Pro",
+    "description": "Official Xiaomi product with manufacturer warranty",
+    "category": "laptops",
+    "brand": "Xiaomi",
+    "price": 25058.0,
+    "currency": "BDT",
+    "discount_percent": 0,
+    "stock": 45,
+    "is_active": true,
+    "rating": 4.8,
+    "tags": [
+      "charger",
+      "amoled",
+      "tablet"
+    ],
+    "image_urls": [
+      "https://cdn.example.com/xiaomi/front.png",
+      "https://cdn.example.com/xiaomi/back.png"
+    ],
+    "dimensions_cm": {
+      "length": 27.4,
+      "width": 20.8,
+      "height": 1.9
+    },
+    "seller": {
+      "seller_id": "73cbdd06-5668-4e52-b172-e765f8468398",
+      "name": "Mi Store",
+      "email": "support@mistore.in",
+      "website": "https://www.mistore.in"
+    },
+    "created_at": "2024-09-06T00:00:00Z"
+  },
+  {
+    "id": "<function uuid4 at 0x0000023844775010>",
+    "sku": "734-gxc-676-245",
+    "name": "Xiaomi Model Pro",
+    "description": "High-performance smartphone with premium build quality.",
+    "category": "Electronics",
+    "brand": "Xiaomi",
+    "price": 499.99,
+    "currency": "USD",
+    "discount_percent": 10,
+    "stock": 25,
+    "is_active": true,
+    "rating": 4.5,
+    "tags": [
+      "smartphone",
+      "android",
+      "5g"
+    ],
+    "image_urls": [
+      "https://example.com/images/product-1.jpg"
+    ],
+    "dimensions_cm": {
+      "length": 15.2,
+      "width": 7.4,
+      "height": 0.8
+    },
+    "seller": {
+      "id": "b3a1b3c4-5d6e-7f80-9123-456789abcdef",
+      "name": "Supan Roy",
+      "email": "supan@supanroy.com",
+      "website": "https://supanroy.com/"
+    },
+    "created_at": "2026-05-13T07:07:28.876456+00:00Z",
+    "final_price": 449.99,
+    "volume_cm3": 89.98
+  }
+]

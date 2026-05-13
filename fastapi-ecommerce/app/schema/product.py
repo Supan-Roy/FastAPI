@@ -35,10 +35,10 @@ class Seller(BaseModel):
     @field_validator("email", mode="after")
     @classmethod
     def validate_seller_email_domain(cls, value: EmailStr):
-        allowed_domains = ["supanroy.com", "mistore.com", "apple.com", "amazon.com", "darazmall.com"]
-        domain = str(value).split("@"[-1]).lower()
+        allowed_domains = ["supanroy.com", "mistore.com", "mistore.in", "apple.com", "amazon.com", "amazon.in", "darazmall.com", "example.com"]
+        domain = str(value).split("@")[-1].lower()
         if domain not in allowed_domains:
-            raise ValueError("Seller email domain not allowed: {domain}")
+            raise ValueError(f"Seller email domain not allowed: {domain}")
 
         return value
 
@@ -85,7 +85,7 @@ class Product(BaseModel):
         if "-" not in value:
             raise ValueError("SKU must have '-'")
 
-        last = value.split("-"[-1])
+        last = value.split("-")[-1]
         if not (len(last) == 3 and last.isdigit()):
             raise ValueError("SKU must end with a 3-digit sequence like -245")
 
@@ -97,7 +97,7 @@ class Product(BaseModel):
         if model.stock == 0 and model.is_active is True:
             raise ValueError("If stock is 0, is_active must be false")
         
-        if model.dicount_percent > 0 and model.rating == 0:
+        if model.discount_percent > 0 and model.rating == 0:
             raise ValueError("Discounted product must have a rating more than zero")
         
         return model
