@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Query, Path
-from service.products import get_all_products, add_product, remove_product
-from schema.product import Product
+from service.products import get_all_products, add_product, remove_product, change_product
+from schema.product import Product, UpdateProduct
 from uuid import uuid4, UUID
 from datetime import datetime, timezone
 
@@ -95,3 +95,11 @@ def delete_product(product_id: UUID = Path(..., description="Product UUID")):
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+@app.put("/products/{product_id}")
+def update_product(product_id: UUID = Path(..., description="Product UUID"), payload: UpdateProduct = ...):
+    try:
+        updated = change_product(str(product_id), payload.model_dump(exclude_unset=True))
+        return updated
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))

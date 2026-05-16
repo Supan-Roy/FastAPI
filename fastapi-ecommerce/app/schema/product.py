@@ -112,3 +112,39 @@ class Product(BaseModel):
     def volume_cm3(self) -> float:
         d = self.dimensions_cm
         return round(d.length * d.width * d.height, 2)
+
+
+class UpdateProduct(BaseModel):
+    id: Optional[UUID] = None
+    sku: Optional[Annotated[
+        str,
+        Field(
+            min_length=6,
+            max_length=30,
+            title="SKU",
+            description="Stock Keeping Unit",
+        ),
+    ]] = None
+    name: Optional[Annotated[
+        str,
+        Field(
+            min_length=3,
+            max_length=80,
+            title="Product Name",
+            description="Readable product name (3-80 chars).",
+        ),
+    ]] = None
+    description: Optional[str] = None
+    category: Optional[str] = None
+    brand: Optional[str] = None
+    price: Optional[float] = Field(None, ge=0)
+    currency: Optional[str] = Field(None, min_length=1, max_length=4)
+    discount_percent: Optional[int] = Field(None, ge=0, le=100)
+    stock: Optional[int] = Field(None, ge=0)
+    is_active: Optional[bool] = None
+    rating: Optional[float] = Field(None, ge=0, le=5)
+    tags: Optional[List[str]] = None
+    image_urls: Optional[List[AnyUrl]] = None
+    dimensions_cm: Optional[Dimensions] = None
+    seller: Optional[Seller] = None
+    created_at: Optional[datetime] = None
